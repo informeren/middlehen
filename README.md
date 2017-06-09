@@ -1,3 +1,5 @@
+![MiddleHen Mascot](https://raw.githubusercontent.com/informeren/middlehen/develop/assets/middlehen-400.png)
+
 MiddleHen
 =========
 
