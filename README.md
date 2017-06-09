@@ -4,3 +4,5 @@ MiddleHen
 =========
 
 A simple REST proxy with authentication support.
+
+_Chicken mascot created by Mia Mottelson._
