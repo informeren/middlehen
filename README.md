@@ -1,9 +1,10 @@
-![MiddleHen Mascot](https://raw.githubusercontent.com/informeren/middlehen/develop/assets/middlehen-400.png)
+![MiddleHen Mascot](https://raw.githubusercontent.com/informeren/middlehen/develop/assets/middlehen-888.png)
 
 MiddleHen
 =========
 
 A simple REST proxy with authentication support.
+
 
 Getting started
 ---------------
@@ -28,6 +29,7 @@ $config = [
                     'X-Foo-Auth' => '',
                 ],
             ],
+            'cache_control' => 'public, max-age=3600',
         ],
         'bar' => [
             'endpoint' => 'https://bar.example.com/v3/',
@@ -37,6 +39,7 @@ $config = [
                     'bat' => '',
                 ],
             ],
+            'cache_control' => 'public, max-age=600',
         ],
     ],
 ];
@@ -45,6 +48,10 @@ $config = [
 Now you can go to the `htdocs` directory and run the following command to start a local web server.
 
     php -S 127.0.0.1:8000
+
+
+Configuration
+-------------
 
 
 Testing
