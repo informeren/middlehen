@@ -1,9 +1,10 @@
 {
     "require": {
         "php": ">=5.3.0",
-        "silex/silex": "~2.0",
         "guzzlehttp/guzzle": "^6.2",
-        "monolog/monolog": "^1.22"
+        "monolog/monolog": "^1.22",
+        "silex/silex": "~2.0",
+        "twig/twig": "^1.29"
     },
     "prefer-stable": true,
     "autoload": {
