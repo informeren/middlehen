@@ -2,10 +2,14 @@
 
 use App\Controller\DefaultController;
 use App\Controller\ProxyController;
+use GuzzleHttp\Client;
 use Monolog\Handler\SyslogHandler;
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
+
+//use Symfony\Component\HttpFoundation\Request;
+//Request::setTrustedProxies(['', '']);
 
 // Default configuration. See README.md for a complete example.
 $config = [
@@ -30,7 +34,12 @@ $app->register(new MonologServiceProvider(), [
     'monolog.handler' => new SyslogHandler('middlehen'),
 ]);
 
+// Register the HTTP client service.
+$app['client'] = function ($app) {
+    return new Client();
+};
+
 $app->mount('/', new DefaultController());
-$app->mount('/v1', new ProxyController());
+$app->mount('/proxy', new ProxyController());
 
 return $app;
