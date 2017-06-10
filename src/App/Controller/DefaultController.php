@@ -20,7 +20,7 @@ class DefaultController implements ControllerProviderInterface
 
         // Controller for the dashboard frontpage.
         $controllers->get('/', function (Application $app) {
-            /* @var $app \Twig_Environment[] */
+            /** @var $app \Twig_Environment[] */
             return $app['twig']->render('index.html.twig');
         });
 
