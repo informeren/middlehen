@@ -11,7 +11,6 @@ class DefaultControllerTest extends WebTestCase
         $client = $this->createClient();
         $crawler = $client->request('GET', '/');
 
-
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertCount(1, $crawler->filter('img[src="/img/middlehen.png"]'));
     }
