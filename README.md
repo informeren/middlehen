@@ -23,7 +23,7 @@ $config = [
     'environment' => 'development',
     'proxies' => [
         'foo' => [
-            'endpoint' => 'https://foo.example.com/v1/',
+            'base_url' => 'https://foo.example.com/v1/',
             'authentication' => [
                 'http_headers' => [
                     'X-Foo-Auth' => '',
@@ -32,7 +32,7 @@ $config = [
             'cache_control' => 'public, max-age=3600',
         ],
         'bar' => [
-            'endpoint' => 'https://bar.example.com/v3/',
+            'base_url' => 'https://bar.example.com/v3/',
             'authentication' => [
                 'query_parameters' => [
                     'baz' => '',
@@ -52,6 +52,10 @@ Now you can go to the `htdocs` directory and run the following command to start 
 
 Configuration
 -------------
+
+
+Usage
+-----
 
 
 Testing
