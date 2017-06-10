@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\DefaultController;
+use App\Controller\ProxyController;
 use Monolog\Handler\SyslogHandler;
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
@@ -30,5 +31,6 @@ $app->register(new MonologServiceProvider(), [
 ]);
 
 $app->mount('/', new DefaultController());
+$app->mount('/v1', new ProxyController());
 
 return $app;
