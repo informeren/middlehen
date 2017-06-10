@@ -25,7 +25,7 @@ class ProxyController implements ControllerProviderInterface
             ->match('/{service}/{endpoint}', function (Request $request, $service, $endpoint) use ($app) {
                 $config = $app['proxies'][$service];
 
-                /** @var $app \GuzzleHttp\Client[] */
+                /** @var $client \GuzzleHttp\Client */
                 $client = $app['client'];
 
                 $query = $request->query->all();
