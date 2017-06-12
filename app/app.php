@@ -5,6 +5,7 @@ use App\Controller\ProxyController;
 use GuzzleHttp\Client;
 use Middlehen\Options;
 use Monolog\Handler\SyslogHandler;
+use Mustache\Silex\Provider\MustacheServiceProvider;
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
@@ -25,15 +26,18 @@ if (file_exists(__DIR__ . '/config.php')) {
 
 $app = new Application($config);
 
-// Register the Twig template engine service.
-$app->register(new TwigServiceProvider(), [
-    'twig.path' => __DIR__ . '/views',
-]);
-
 // Register the Monolog logging service and send all messages to the syslog.
 $app->register(new MonologServiceProvider(), [
     'monolog.handler' => new SyslogHandler('middlehen'),
 ]);
+
+// Register the Mustache template engine service.
+$app->register(new MustacheServiceProvider, array(
+    'mustache.path' => __DIR__ . '/views',
+    'mustache.options' => array(
+        'cache' => __DIR__ . '/cache/mustache',
+    ),
+));
 
 // Register the HTTP client service.
 $app['middlehen.client'] = function ($app) {

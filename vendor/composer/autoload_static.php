@@ -190,6 +190,11 @@ class ComposerStaticInit6ba0f62e8799c0a463830add844dee9f
         ),
         'M' => 
         array (
+            'Mustache' => 
+            array (
+                0 => __DIR__ . '/..' . '/mustache/mustache/src',
+                1 => __DIR__ . '/..' . '/mustache/silex-provider/src',
+            ),
             'Mockery' => 
             array (
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
