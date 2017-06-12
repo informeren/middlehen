@@ -17,13 +17,31 @@ class Options
     public function __construct($config)
     {
         $this->config = $config;
-        $this->options = [];
+        $this->options = [
+            'headers' => [
+                'User-Agent' => 'MiddleHen/1.0 (+information.dk)',
+            ],
+        ];
     }
 
+    /**
+     * Get the finished options array.
+     *
+     * @return array
+     *   An array for use in a HTTP request.
+     */
     public function getOptions() {
         return $this->options;
     }
 
+    /**
+     * Add query parameters to the options array.
+     *
+     * Merges authentication parameters if they exist in the proxy configuration.
+     *
+     * @param array $query_parameters
+     *   The query parameters to merge.
+     */
     public function addQueryParameters($query_parameters)
     {
         if (!empty($this->config['authentication']['query_parameters'])) {
