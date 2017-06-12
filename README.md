@@ -23,7 +23,7 @@ $config = [
     'environment' => 'development',
     'proxies' => [
         'foo' => [
-            'base_url' => 'https://foo.example.com/v1/',
+            'base_uri' => 'https://foo.example.com/v1/',
             'authentication' => [
                 'http_headers' => [
                     'X-Foo-Auth' => '',
@@ -32,7 +32,7 @@ $config = [
             'cache_control' => 'public, max-age=3600',
         ],
         'bar' => [
-            'base_url' => 'https://bar.example.com/v3/',
+            'base_uri' => 'https://bar.example.com/v3/',
             'authentication' => [
                 'query_parameters' => [
                     'baz' => '',

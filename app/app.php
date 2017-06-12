@@ -36,7 +36,10 @@ $app->register(new MonologServiceProvider(), [
 
 // Register the HTTP client service.
 $app['client'] = function ($app) {
-    return new Client();
+    $config = [
+        'base_uri' => $app['middlehen.config']['base_uri'];
+    ];
+    return new Client($config);
 };
 
 $app->mount('/', new DefaultController());

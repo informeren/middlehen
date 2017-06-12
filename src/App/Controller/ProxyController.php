@@ -23,13 +23,7 @@ class ProxyController implements ControllerProviderInterface
 
         $controllers
             ->match('/{service}/{endpoint}', function (Request $request, $service, $endpoint) use ($app) {
-                $config = $app['proxies'][$service];
-
-                // TODO: decide which request headers to forward.
-
-                // TODO: use custom 'request options' class to create the options array.
-
-                /** @var $client \GuzzleHttp\Client */
+                /** @var $client \Middlehen\Client */
                 $client = $app['client'];
 
                 $query = $request->query->all();
@@ -53,12 +47,14 @@ class ProxyController implements ControllerProviderInterface
                 return new Response($response->getBody(), $response->getStatusCode(), $headers);
             })
             ->assert('endpoint', '.*')
-            ->before(function (Request $request) use ($app) {
+            ->before(function (Request $request, Application $app) {
                 // TODO: Only allow proxy requests from trusted IPs
                 $path = substr($request->getPathInfo(), 1);
                 list(, $service, ) = explode('/', $path);
                 if (empty($app['proxies'][$service])) {
                     return new Response('Unknown service', 400);
+                } else {
+                    $app['middlehen.config'] = $app['proxies'][$service];
                 }
                 return null;
             });
