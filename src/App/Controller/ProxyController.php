@@ -42,7 +42,6 @@ class ProxyController implements ControllerProviderInterface
             })
             ->assert('endpoint', '.*')
             ->before(function (Request $request, Application $app) {
-                // TODO: Only allow proxy requests from trusted IPs
                 $path = substr($request->getPathInfo(), 1);
                 list(, $service, ) = explode('/', $path);
                 if (empty($app['proxies'])) {
