@@ -49,6 +49,7 @@ class ComposerStaticInit6ba0f62e8799c0a463830add844dee9f
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Middlehen\\' => 10,
         ),
         'G' => 
         array (
@@ -137,6 +138,10 @@ class ComposerStaticInit6ba0f62e8799c0a463830add844dee9f
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Middlehen\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Middlehen',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

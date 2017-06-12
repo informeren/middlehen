@@ -2,7 +2,7 @@
 
 use App\Controller\DefaultController;
 use App\Controller\ProxyController;
-use MiddleHen\Client;
+use Middlehen\Client;
 use Monolog\Handler\SyslogHandler;
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;

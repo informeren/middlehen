@@ -11,6 +11,9 @@
         "psr-4": {
             "App\\": [
                 "src/App/"
+            ],
+            "Middlehen\\": [
+                "src/Middlehen/"
             ]
         }
     },
