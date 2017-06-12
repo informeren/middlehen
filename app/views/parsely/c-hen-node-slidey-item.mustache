@@ -1,8 +1,10 @@
+{{# data }}
 <li>
-  <div about="{{ url }}" typeof="sioc:Item foaf:Document" class="c-hen-node-slidey__item">
-    <div class="c-hen-node-slidey__item--image">
-      <a href="{{ url }}"><img typeof="foaf:Image" src="{{ image_url }}" alt="{{ title }}"></a>
+    <div about="{{& url }}" typeof="sioc:Item foaf:Document" class="c-hen-node-slidey__item">
+        <div class="c-hen-node-slidey__item--image">
+            <a href="{{& url }}"><img typeof="foaf:Image" src="{{& image_url }}" alt="{{ title }}"></a>
+        </div>
+        <h3 class="node-title c-hen-node-slidey__item--title"><a href="{{& url }}">{{ title }}</a></h3>
     </div>
-    <h3 class="node-title c-hen-node-slidey__item--title"><a href="{{ url }}"{{ title }}</a></h3>
-  </div>
 </li>
+{{/ data }}
