@@ -25,6 +25,10 @@ class ProxyController implements ControllerProviderInterface
             ->match('/{service}/{endpoint}', function (Request $request, $service, $endpoint) use ($app) {
                 $config = $app['proxies'][$service];
 
+                // TODO: decide which request headers to forward.
+
+                // TODO: use custom 'request options' class to create the options array.
+
                 /** @var $client \GuzzleHttp\Client */
                 $client = $app['client'];
 
