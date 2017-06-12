@@ -45,6 +45,9 @@ class ProxyController implements ControllerProviderInterface
                 // TODO: Only allow proxy requests from trusted IPs
                 $path = substr($request->getPathInfo(), 1);
                 list(, $service, ) = explode('/', $path);
+                if (empty($app['proxies'])) {
+                    return new Response('No proxies configured', 400);
+                }
                 if (empty($app['proxies'][$service])) {
                     return new Response('Unknown service', 400);
                 }
