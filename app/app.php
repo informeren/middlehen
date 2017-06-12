@@ -3,6 +3,7 @@
 use App\Controller\DefaultController;
 use App\Controller\ProxyController;
 use GuzzleHttp\Client;
+use Middlehen\Options;
 use Monolog\Handler\SyslogHandler;
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
@@ -35,11 +36,16 @@ $app->register(new MonologServiceProvider(), [
 ]);
 
 // Register the HTTP client service.
-$app['client'] = function ($app) {
+$app['middlehen.client'] = function ($app) {
     $config = [
         'base_uri' => $app['middlehen.config']['base_uri'],
     ];
     return new Client($config);
+};
+
+// Register the query options service.
+$app['middlehen.options'] = function ($app) {
+    return new Options($app['middlehen.config']);
 };
 
 $app->mount('/', new DefaultController());

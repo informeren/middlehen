@@ -23,24 +23,18 @@ class ProxyController implements ControllerProviderInterface
 
         $controllers
             ->match('/{service}/{endpoint}', function (Request $request, $service, $endpoint) use ($app) {
-                /** @var $client \Middlehen\Client */
-                $client = $app['client'];
+                $app['middlehen.config'] = $app['proxies'][$service];
 
-                $query = $request->query->all();
-                if (!empty($config['authentication']['query_parameters'])) {
-                    $query = array_merge($query, $config['authentication']['query_parameters']);
-                }
+                /** @var $client \GuzzleHttp\Client */
+                $client = $app['middlehen.client'];
+                $options = $app['middlehen.options'];
 
-                $options = [
-                    'query' => $query,
-                ];
+                $options->addQueryParameters($request->query->all());
 
-                $uri = $config['base_url'] . $endpoint;
-
-                $response = $client->request($request->getMethod(), $uri, $options);
+                $response = $client->request($request->getMethod(), $endpoint, $options->getOptions());
 
                 $headers = [
-                    'Cache-Control' => $config['cache_control'], // Only for GET requests
+                    'Cache-Control' => $app['middlehen.config']['cache_control'],
                     'Content-Type' => $response->getHeader('Content-Type'),
                 ];
 
@@ -53,8 +47,6 @@ class ProxyController implements ControllerProviderInterface
                 list(, $service, ) = explode('/', $path);
                 if (empty($app['proxies'][$service])) {
                     return new Response('Unknown service', 400);
-                } else {
-                    $app['middlehen.config'] = $app['proxies'][$service];
                 }
                 return null;
             });
