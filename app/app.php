@@ -39,6 +39,7 @@ $app->register(new MonologServiceProvider(), [
 $app['middlehen.client'] = function ($app) {
     $config = [
         'base_uri' => $app['middlehen.config']['base_uri'],
+        'debug' => $app['debug'],
     ];
     return new Client($config);
 };
