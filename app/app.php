@@ -2,7 +2,7 @@
 
 use App\Controller\DefaultController;
 use App\Controller\ProxyController;
-use Middlehen\Client;
+use Middlehen\Proxy;
 use Monolog\Handler\SyslogHandler;
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
@@ -39,7 +39,7 @@ $app['client'] = function ($app) {
     $config = [
         'base_uri' => $app['middlehen.config']['base_uri'];
     ];
-    return new Client($config);
+    return new Proxy($config);
 };
 
 $app->mount('/', new DefaultController());

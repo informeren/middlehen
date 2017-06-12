@@ -2,7 +2,7 @@
 
 namespace Middlehen;
 
-class Client
+class Proxy
 {
     /**
      * A GuzzleHTTP client.
