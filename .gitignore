@@ -15,6 +15,6 @@ report
 notes.txt
 
 # Ignore utility scripts.
-deploy.sh
+deploy*.sh
 runtest.sh
 test.sh
