@@ -36,6 +36,7 @@ class ProxyController implements ControllerProviderInterface
                 $headers = [
                     'Cache-Control' => $app['middlehen.config']['cache_control'],
                     'Content-Type' => $response->getHeader('Content-Type'),
+                    'Vary' => 'Content-Type',
                 ];
 
                 if ($template = $request->headers->get('x-mustache')) {
