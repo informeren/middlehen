@@ -39,13 +39,14 @@ class ProxyController implements ControllerProviderInterface
                     'Vary' => 'Accept',
                 ];
 
+                $status_code = $response->getStatusCode();
                 if ($template = $request->headers->get('x-mustache')) {
                     $template = 'parsely/' . $template . '.mustache';
                     $data = json_decode($response->getBody(), true); // ,true?
                     $headers['Content-Type'] = 'text/html';
-                    return new response($app['mustache']->render($template, $data), $response->getStatusCode(), $headers);
+                    return new Response($app['mustache']->render($template, $data), $status_code, $headers);
                 } else {
-                    return new Response($response->getBody(), $response->getStatusCode(), $headers);
+                    return new Response($response->getBody(), $status_code, $headers);
                 }
             })
             ->assert('endpoint', '.*')
