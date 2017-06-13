@@ -42,6 +42,7 @@ class ProxyController implements ControllerProviderInterface
                 if ($template = $request->headers->get('x-mustache')) {
                     $template = 'parsely/' . $template . '.mustache';
                     $data = json_decode($response->getBody(), true); // ,true?
+                    $headers['Content-Type'] = 'text/html';
                     return new response($app['mustache']->render($template, $data), $response->getStatusCode(), $headers);
                 } else {
                     return new Response($response->getBody(), $response->getStatusCode(), $headers);
