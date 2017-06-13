@@ -57,6 +57,13 @@ Configuration
 Usage
 -----
 
+Use the `Accept` header to define the reponse format you are interested in. Support types are:
+
+- `application/json`
+- `text/html`
+
+If you choose `text/html`, you must provide an `X-Mustache` header with the name of the template you would like to use. If you are using the `foo` proxy and the `bar` template, Middlehen will try to use the Mustache template located at `app/views/foo/bar.mustache`.
+
 
 Testing
 -------
