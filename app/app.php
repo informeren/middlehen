@@ -8,7 +8,6 @@ use Monolog\Handler\SyslogHandler;
 use Mustache\Silex\Provider\MustacheServiceProvider;
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
-use Silex\Provider\TwigServiceProvider;
 
 //use Symfony\Component\HttpFoundation\Request;
 //Request::setTrustedProxies(['', '']);
