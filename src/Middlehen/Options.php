@@ -38,7 +38,8 @@ class Options
      * @return array
      *   An array for use in a HTTP request.
      */
-    public function getOptions() {
+    public function getOptions()
+    {
         return $this->options;
     }
 
