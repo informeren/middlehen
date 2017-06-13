@@ -36,13 +36,13 @@ class ProxyController implements ControllerProviderInterface
                 $headers = [
                     'Cache-Control' => $app['middlehen.config']['cache_control'],
                     'Content-Type' => $response->getHeader('Content-Type'),
-                    'Vary' => 'Content-Type',
+                    'Vary' => 'Accept',
                 ];
 
                 if ($template = $request->headers->get('x-mustache')) {
                     $template = 'parsely/' . $template . '.mustache';
                     $data = json_decode($response->getBody(), true); // ,true?
-                    return $app['mustache']->render($template, $data);
+                    return new response($app['mustache']->render($template, $data), $response->getStatusCode(), $headers);
                 } else {
                     return new Response($response->getBody(), $response->getStatusCode(), $headers);
                 }
