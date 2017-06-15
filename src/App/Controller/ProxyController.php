@@ -42,9 +42,15 @@ class ProxyController implements ControllerProviderInterface
                     $template = $service . '/' . $template . '.mustache';
                     $data = json_decode($response->getBody());
                     $headers['Content-Type'] = 'text/html';
+                    $headers['Access-Control-Allow-Origin'] = '*';
+                    $headers['Access-Control-Allow-Methods'] = 'GET';
+                    $headers['Access-Control-Allow-Headers'] = 'X-Mustache, X-Requested-With, Content-Type';
                     return new Response($app['mustache']->render($template, $data), $status_code, $headers);
                 } else {
                     $headers['Content-Type'] = $response->getHeader('Content-Type');
+                    $headers['Access-Control-Allow-Origin'] = '*';
+                    $headers['Access-Control-Allow-Methods'] = 'GET';
+                    $headers['Access-Control-Allow-Headers'] = 'X-Mustache, X-Requested-With, Content-Type';
                     return new Response($response->getBody(), $status_code, $headers);
                 }
             })
