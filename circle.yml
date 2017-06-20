@@ -1,0 +1,24 @@
+machine:
+  timezone:
+    Europe/Copenhagen
+
+dependencies:
+  pre:
+    - pear install PHP_CodeSniffer
+  override:
+    # Use fixed version of Composer so we don't get changes to files checked into Git.
+    - sudo composer self-update 1.3.1
+    - composer install
+    - echo "date.timezone = Europe/Copenhagen" > /opt/circleci/php/$(phpenv global)/etc/conf.d/date.ini
+  post:
+    - wget https://phar.phpunit.de/phpunit-5.7.19.phar
+    - chmod +x phpunit-5.7.19.phar
+    - mv phpunit-5.7.19.phar phpunit.phar
+
+test:
+  override:
+    - composer validate
+    - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+    - ./phpunit.phar --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml
+    - phpcs --standard=PSR1 --extensions=php --ignore=vendor --ignore=app/cache ./
+    - phpcs --standard=PSR2 --extensions=php --ignore=vendor --ignore=app/cache ./

@@ -1,0 +1,20 @@
+# Ignore IDE-specific settings and files.
+.idea
+
+# Ignore code handled by Yarn.
+node_modules
+
+# Ignore app-specific configuration and logs.
+app/config.php
+app/log
+
+# Ignore PHPUnit reports.
+report
+
+# Ignore project-specific notes.
+notes.txt
+
+# Ignore utility scripts.
+deploy*.sh
+runtest.sh
+test.sh
