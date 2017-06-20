@@ -20,5 +20,5 @@ test:
     - composer validate
     - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
     - ./phpunit.phar --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml
-    - phpcs --standard=PSR1 --extensions=php --ignore=vendor --ignore=app/cache ./
-    - phpcs --standard=PSR2 --extensions=php --ignore=vendor --ignore=app/cache ./
+    - phpcs --standard=PSR1 --extensions=php --ignore=vendor,app/cache ./
+    - phpcs --standard=PSR2 --extensions=php --ignore=vendor,app/cache ./
