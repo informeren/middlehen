@@ -4,7 +4,8 @@
         "guzzlehttp/guzzle": "^6.2",
         "monolog/monolog": "^1.22",
         "silex/silex": "~2.0",
-        "mustache/silex-provider": "^2.0"
+        "mustache/silex-provider": "^2.0",
+        "doctrine/dbal": "^2.5"
     },
     "prefer-stable": true,
     "autoload": {
