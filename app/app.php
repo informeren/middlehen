@@ -56,13 +56,13 @@ $app['middlehen.options'] = function ($app) {
 
 // Register the event subscribers.
 $app['middlehen.events'] = function ($app) {
-  return new EventsForProxy($app['middlehen.config']);
+    return new EventsForProxy($app['middlehen.config']);
 };
 
 if (!empty($config['databases'])) {
-  $app->register(new DoctrineServiceProvider(), [
-    'dbs.options' => $config['databases'],
-  ]);
+    $app->register(new DoctrineServiceProvider(), [
+        'dbs.options' => $config['databases'],
+    ]);
 }
 
 $app->mount('/', new DefaultController());

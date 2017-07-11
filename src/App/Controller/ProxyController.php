@@ -32,9 +32,9 @@ class ProxyController implements ControllerProviderInterface
 
                 $events = $app['middlehen.events'];
                 if ($events->hasSubscribers()) {
-                  foreach ($events->getEventSubscribers() as $subscriber) {
-                    $app['dispatcher']->addSubscriber(new $subscriber($app));
-                  }
+                    foreach ($events->getEventSubscribers() as $subscriber) {
+                        $app['dispatcher']->addSubscriber(new $subscriber($app));
+                    }
                 }
 
                 $options = $app['middlehen.options'];
