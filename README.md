@@ -40,8 +40,21 @@ $config = [
                 ],
             ],
             'cache_control' => 'public, max-age=600',
+            'eventSubscribers' => [
+               "\MyNamespace\Thing\EventSubscriber\SomeSubscriber"
+             ]
         ],
     ],
+    'databases' => [
+       'myNamedDb' => [
+           'driver' => 'pdo_mysql',
+           'host' => 'foo',
+           'dbname' => 'foo',
+           'user' => 'bar',
+           'password' => 'foobar',
+           'charset' => 'utf8',
+        ]
+    ]
 ];
 ```
 
@@ -53,6 +66,14 @@ Now you can go to the `htdocs` directory and run the following command to start 
 Configuration
 -------------
 
+### Databases
+Note that you can use multiple named databases. They are registered on the app so that they are available like this:
+```
+$app['dbs']['myNamedDb'];
+```
+
+### EventSubscribers
+You can add as many event subscribers as needed on each proxy. They should implement `Symfony\Component\EventDispatcher\EventSubscriberInterface` and the constructor should expect a `Silex\Application` object.
 
 Usage
 -----
