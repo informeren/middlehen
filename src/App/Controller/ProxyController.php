@@ -30,6 +30,13 @@ class ProxyController implements ControllerProviderInterface
 
                 $app['middlehen.config'] = $app['proxies'][$service];
 
+                $events = $app['middlehen.events'];
+                if ($events->hasSubscribers()) {
+                    foreach ($events->getEventSubscribers() as $subscriber) {
+                        $app['dispatcher']->addSubscriber(new $subscriber($app));
+                    }
+                }
+
                 $options = $app['middlehen.options'];
                 $options->addQueryParameters($request->query->all());
 
