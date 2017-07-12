@@ -4,6 +4,9 @@
 # Ignore code handled by Yarn.
 node_modules
 
+vendor
+composer.lock
+
 # Ignore app-specific configuration and logs.
 app/config.php
 app/log
