@@ -3,8 +3,7 @@
 use App\Controller\DefaultController;
 use App\Controller\ProxyController;
 use GuzzleHttp\Client;
-use Middlehen\EventsForProxy;
-use Middlehen\Options;
+use Middlehen\EventDelegator;
 use Monolog\Handler\SyslogHandler;
 use Mustache\Silex\Provider\MustacheServiceProvider;
 use Silex\Application;
@@ -49,21 +48,13 @@ $app['middlehen.client'] = function ($app) {
     return new Client($config);
 };
 
-// Register the query options service.
-$app['middlehen.options'] = function ($app) {
-    return new Options($app['middlehen.config']);
-};
-
-// Register the event subscribers.
-$app['middlehen.events'] = function ($app) {
-    return new EventsForProxy($app['middlehen.config']);
-};
-
 if (!empty($config['databases'])) {
     $app->register(new DoctrineServiceProvider(), [
         'dbs.options' => $config['databases'],
     ]);
 }
+
+$app['dispatcher']->addSubscriber(new EventDelegator($app));
 
 $app->mount('/', new DefaultController());
 $app->mount('/proxy', new ProxyController());

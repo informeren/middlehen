@@ -21,21 +21,8 @@ class ProxyController implements ControllerProviderInterface
         /** @var $controllers \Silex\ControllerCollection */
         $controllers = $app['controllers_factory'];
 
-        /** @noinspection PhpUnusedParameterInspection */
         $controllers
             ->match('/{service}/{endpoint}', function (Request $request, $service, $endpoint) use ($app) {
-                if (empty($app['proxies'][$service])) {
-                    return new Response('Unknown service', 400);
-                }
-
-                $app['middlehen.config'] = $app['proxies'][$service];
-
-                $events = $app['middlehen.events'];
-                if ($events->hasSubscribers()) {
-                    foreach ($events->getEventSubscribers() as $subscriber) {
-                        $app['dispatcher']->addSubscriber(new $subscriber($app));
-                    }
-                }
 
                 $options = $app['middlehen.options'];
                 $options->addQueryParameters($request->query->all());
